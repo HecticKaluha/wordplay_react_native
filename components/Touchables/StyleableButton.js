@@ -1,24 +1,17 @@
-import React, {Component} from 'react';
-import {
-    StyleSheet,
-    Text,
-    TouchableNativeFeedback,
-    View,
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, TouchableNativeFeedback, View,} from 'react-native';
 
-export default class StyleableButton extends Component {
-    render() {
-        let {onPress, title, style} = this.props;
-        return (
-            <TouchableNativeFeedback
-                onPress={this.props.onPress}>
-                {/*<View style={styles.button}>*/}
-                <View style={this.props.style ? this.props.style : styles.button}>
-                    <Text style={styles.buttonText}>{this.props.title}</Text>
-                </View>
-            </TouchableNativeFeedback>
-        );
-    }
+export default function StyleableButton(props) {
+    let {onPress, title, style} = props;
+    return (
+        <TouchableNativeFeedback
+            onPress={props.onPress}>
+            {/*<View style={styles.button}>*/}
+            <View style={props.style ? props.style : styles.button}>
+                <Text style={styles.buttonText}>{props.title}</Text>
+            </View>
+        </TouchableNativeFeedback>
+    );
 }
 
 const styles = StyleSheet.create({
