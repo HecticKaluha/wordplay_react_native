@@ -1,13 +1,13 @@
 import {StyleSheet} from 'react-native';
 import Cat from './components/examples/Cat.js'
-import PlayStackScreen from './components/Play/PlayStackScreen.js'
+import PlayStack from './components/Play/PlayStack.js'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {getFocusedRouteNameFromRoute, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import ProfileStackScreen from "./components/Profile/ProfileStackScreen";
-import HomeStackScreen from "./components/Home/HomeStackScreen";
-import LeaderboardStackScreen from "./components/Leaderboard/LeaderboardStackScreen";
-import SettingsStackScreen from "./components/Settings/SettingsStackScreen";
+import ProfileStack from "./components/Profile/ProfileStack";
+import HomeStack from "./components/Home/HomeStack";
+import LeaderboardStack from "./components/Leaderboard/LeaderboardStack";
+import SettingsStack from "./components/Settings/SettingsStack";
 
 
 const Tab = createBottomTabNavigator();
@@ -39,11 +39,11 @@ export default function App() {
                 })}
             >
 
-                <Tab.Screen name="Home" component={HomeStackScreen}/>
-                <Tab.Screen name="Profile" component={ProfileStackScreen}/>
-                <Tab.Screen name="Play" component={PlayStackScreen}/>
-                <Tab.Screen name="Leaderboards" component={LeaderboardStackScreen}/>
-                <Tab.Screen name="Settings" component={SettingsStackScreen}/>
+                <Tab.Screen name="Home" component={HomeStack}/>
+                <Tab.Screen name="Profile" component={ProfileStack}/>
+                <Tab.Screen name="Play" component={PlayStack}/>
+                <Tab.Screen name="Leaderboards" component={LeaderboardStack}/>
+                <Tab.Screen name="Settings" component={SettingsStack}/>
             </Tab.Navigator>
         </NavigationContainer>
     );

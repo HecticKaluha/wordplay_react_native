@@ -2,7 +2,7 @@ import {Button, StyleSheet, Text, View} from 'react-native';
 import React from "react";
 import StyleableButton from "../Touchables/StyleableButton";
 
-export default class ChooseChallenge extends React.Component {
+export default class ChooseChallengeStackScreen extends React.Component {
     render() {
         let {navigation} = this.props;
         return (
