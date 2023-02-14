@@ -4,7 +4,7 @@ import React from "react";
 
 const SettingStackNavigator = createNativeStackNavigator();
 
-export default function SettingsStack({navigation, route}) {
+export default function SettingsStack() {
     return (
         <SettingStackNavigator.Navigator>
             <SettingStackNavigator.Screen options={{ title: 'Settings' }} name="SettingsHome" children={props => <Text {...props}>Settings Home</Text>}/>

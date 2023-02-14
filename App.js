@@ -1,8 +1,7 @@
 import {StyleSheet} from 'react-native';
-import Cat from './components/examples/Cat.js'
 import PlayStack from './components/Play/PlayStack.js'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {getFocusedRouteNameFromRoute, NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import ProfileStack from "./components/Profile/ProfileStack";
 import HomeStack from "./components/Home/HomeStack";
@@ -17,7 +16,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <Tab.Navigator
-                screenOptions={({navigation, route}) => ({
+                screenOptions={({route}) => ({
                     tabBarIcon: ({focused, color, size}) => {
                         let iconName;
                         if (route.name === 'Profile') {

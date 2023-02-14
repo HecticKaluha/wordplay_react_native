@@ -4,7 +4,7 @@ import React from "react";
 
 const LeaderboardStackNavigator = createNativeStackNavigator();
 
-export default function LeaderboardStack({navigation, route}) {
+export default function LeaderboardStack() {
     return (
         <LeaderboardStackNavigator.Navigator>
             <LeaderboardStackNavigator.Screen options={{ title: 'Leaderboards' }} name="LeaderboardsHome" children={props => <Text {...props}>Leaderboards Home</Text>}/>

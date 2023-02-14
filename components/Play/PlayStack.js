@@ -6,7 +6,7 @@ import React from "react";
 
 const PlayStackNavigator = createNativeStackNavigator();
 
-export default function PlayStack({navigation, route}) {
+export default function PlayStack() {
     return (
         <PlayStackNavigator.Navigator>
             <PlayStackNavigator.Screen options={{ title: 'Choose Challenge' }} name="ChallengeHome" component={ChooseChallengeStackScreen}/>
