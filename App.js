@@ -8,11 +8,10 @@ import HomeStack from "./components/Home/HomeStack";
 import LeaderboardStack from "./components/Leaderboard/LeaderboardStack";
 import SettingsStack from "./components/Settings/SettingsStack";
 
-
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    var profileBadgeCount = 3;
+    let profileBadgeCount = 3;
     return (
         <NavigationContainer>
             <Tab.Navigator

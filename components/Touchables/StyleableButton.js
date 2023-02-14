@@ -17,9 +17,10 @@ export default function StyleableButton(props) {
 const styles = StyleSheet.create({
     button: {
         width: 240,
-        backgroundColor: 'green',
+        backgroundColor: '#2196F3',
         alignSelf: 'center',
-        borderRadius:50
+        borderRadius:50,
+        display:'flex',
     },
     buttonText: {
         textAlign: 'center',
