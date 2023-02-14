@@ -2,13 +2,13 @@ import {Button, StyleSheet, Text, View} from 'react-native';
 import React from "react";
 import StyleableButton from "../Touchables/StyleableButton";
 
-export default class Home extends React.Component {
+export default class ChooseChallenge extends React.Component {
     render() {
         let {navigation} = this.props;
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Choose your type of challenge!</Text>
-                <StyleableButton style={styles.button} title={'Play Challenge'} onPress={() => navigation.navigate('Play_Challenge')}></StyleableButton>
+                <StyleableButton style={styles.button} title={'Play Challenge'} onPress={() => navigation.navigate('ChallengePlay')}></StyleableButton>
             </View>
         );
     }

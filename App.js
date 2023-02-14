@@ -1,9 +1,13 @@
 import {StyleSheet} from 'react-native';
 import Cat from './components/examples/Cat.js'
-import PlayStackScreen from './components/PlayComponent/PlayStackScreen.js'
+import PlayStackScreen from './components/Play/PlayStackScreen.js'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {NavigationContainer} from '@react-navigation/native';
+import {getFocusedRouteNameFromRoute, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import ProfileStackScreen from "./components/Profile/ProfileStackScreen";
+import HomeStackScreen from "./components/Home/HomeStackScreen";
+import LeaderboardStackScreen from "./components/Leaderboard/LeaderboardStackScreen";
+import SettingsStackScreen from "./components/Settings/SettingsStackScreen";
 
 
 const Tab = createBottomTabNavigator();
@@ -13,7 +17,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <Tab.Navigator
-                screenOptions={({route}) => ({
+                screenOptions={({navigation, route}) => ({
                     tabBarIcon: ({focused, color, size}) => {
                         let iconName;
                         if (route.name === 'Profile') {
@@ -31,14 +35,15 @@ export default function App() {
                     },
                     tabBarActiveTintColor: 'blue',
                     tabBarInactiveTintColor: 'grey',
+                    headerShown: false
                 })}
             >
 
-                <Tab.Screen name="Home" children={props => <Cat name={'Home'} {...props} />}/>
-                <Tab.Screen name="Profile" options={{tabBarBadge: profileBadgeCount }} children={props => <Cat name={'Profile'} {...props} />}/>
-                <Tab.Screen name="Play" children={props => <PlayStackScreen name={'Play'} {...props} />}/>
-                <Tab.Screen name="Leaderboards" children={props => <Cat name={'Leaderboard'} {...props} />}/>
-                <Tab.Screen name="Settings" children={props => <Cat name={'Leaderboard'} {...props} />}/>
+                <Tab.Screen name="Home" component={HomeStackScreen}/>
+                <Tab.Screen name="Profile" component={ProfileStackScreen}/>
+                <Tab.Screen name="Play" component={PlayStackScreen}/>
+                <Tab.Screen name="Leaderboards" component={LeaderboardStackScreen}/>
+                <Tab.Screen name="Settings" component={SettingsStackScreen}/>
             </Tab.Navigator>
         </NavigationContainer>
     );
