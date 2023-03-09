@@ -54,6 +54,7 @@ class ChallengeStackScreen extends React.Component {
             this.endChallenge()
         } else {
             this.setState({currentWordCounter: this.state.currentWordCounter + 1})
+            this.setState({word: this.state.data[this.state.currentWordCounter]})
         }
     }
 
