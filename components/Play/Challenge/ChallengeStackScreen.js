@@ -45,39 +45,4 @@ const styles = StyleSheet.create({
         padding: 15,
         alignItems: 'center',
     },
-    horizontal: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        padding: 10,
-    },
-    challengeWordInfo: {
-        flex: 2,
-    },
-    challengeImage: {
-        width: 200,
-        height: 200,
-        margin: 15,
-        alignSelf: 'center'
-    },
-    challengeWord: {
-        fontSize: 34,
-        fontWeight: 'bold',
-        alignSelf: 'center',
-        textAlign: 'center',
-    },
-    challengeButtonContainer: {
-        display: 'flex',
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-    },
-    challengeButton: {
-        display: 'flex',
-        justifyContent: 'center',
-        backgroundColor: '#2196F3',
-        borderRadius: 50,
-        flex: 1,
-        marginHorizontal: 5,
-        height: 70,
-    }
 });

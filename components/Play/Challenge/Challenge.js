@@ -107,11 +107,6 @@ const styles = StyleSheet.create({
         padding: 15,
         alignItems: 'center',
     },
-    horizontal: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        padding: 10,
-    },
     challengeWordInfo: {
         flex: 2,
     },
