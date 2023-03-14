@@ -1,14 +1,11 @@
-import {Alert, Image, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, Alert, Image, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from "react";
 import StyleableButton from "../../Touchables/StyleableButton";
+import Challenge from "./Challenge";
 
 export default function ChallengeStackScreen(props) {
-    const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [word, setWord] = useState('Loading...');
-    const [currentArticles, setCurrentArticles] = useState([]);
-    const [currentWordCounter, setCurrentWordCounter] = useState(0);
-    const answers = ['De', 'Beide', 'Het'];
+    const [data, setData] = useState([]);
 
     const {navigation} = props;
 
@@ -16,81 +13,15 @@ export default function ChallengeStackScreen(props) {
         getChallenge();
     }, [])
 
-    useEffect(()=>{
-        if(data.length > 0){
-            setWord(capitalizeFirstLetter(data[currentWordCounter]['word']))
-            setCurrentArticles(data[currentWordCounter]['articles'])
-        }
-    }, [data, currentWordCounter]);
-
-    const AsyncAlert = (title, msg) => new Promise((resolve) => {
-        Alert.alert(
-            title,
-            msg,
-            [
-                {
-                    text: 'OK',
-                    onPress: () => {
-                        resolve();
-                    },
-                },
-            ],
-            { cancelable: false },
-        );
-    });
-
-    function checkAnswer(answer) {
-        let result = "Incorrect";
-        let alertString = `Je gaf niet het juiste keuze voor het woord '${word}'. De keuze moest zijn '${answers[1]}'.`;
-        if (currentArticles.length === 1) {
-            if (currentArticles[0]['article'].toLowerCase() === answer.toLowerCase()) {
-                result = 'Correct!';
-            }
-            alertString = `Het juiste lidwoord voor ${word} is '${answers[answers.indexOf(capitalizeFirstLetter(currentArticles[0]['article']))]}'.`;
-        } else {
-            if (answer === 'Beide' && currentArticles.length === 2) {
-                result = 'Correct';
-                alertString = `Voor het woord '${word}' zijn beide lidwoorden goed.`;
-            }
-        }
-        AsyncAlert(result, alertString).
-        then(()=>{
-            nextWord()
-        });
-    }
-
-    function nextWord() {
-        if (currentWordCounter >= data.length - 1) {
-            endChallenge()
-        } else {
-            setCurrentWordCounter(currentWordCounter + 1)
-        }
-    }
-
-    function endChallenge() {
-        AsyncAlert("Je hebt de challenge afgerond!", "Je kunt een nieuwe challenge starten via de 'Play' Pagina")
-            .then(()=>{
-            navigation.goBack();
-        });
-    }
-
-    function capitalizeFirstLetter(wordToCapitalize) {
-        return wordToCapitalize
-            .toLowerCase()
-            .split(' ')
-            .map((wordToCapitalize) => wordToCapitalize.charAt(0).toUpperCase() + wordToCapitalize.slice(1))
-            .join(' ');
-    }
-
     async function getChallenge() {
         const delay = ms => new Promise(res => setTimeout(res, ms));
         try {
-            await delay(5000);
+            await delay(2000);
             fetch('http://192.168.1.53:5000/words/random/10')
+                // fetch('http://local.ip.in.network:5000/words/random/10')
                 .then(response => response.json())
                 .then(json => {
                     setData(json.data)
-                    // setWord(json.data[currentWordCounter]['word'])
                 });
         } catch (error) {
             Alert.alert("Error", error.message);
@@ -101,25 +32,8 @@ export default function ChallengeStackScreen(props) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.challengeWordInfo}>
-                <Image
-                    source={require('../../../assets/img/cat.jpg')}
-                    style={styles.challengeImage}
-                />
-                <Text
-                    style={styles.challengeWord}>____ {word}</Text>
-            </View>
-            <View style={styles.challengeButtonContainer}>
-                <StyleableButton style={styles.challengeButton} title={answers[0]} onPress={() => {
-                    checkAnswer(answers[0]);
-                }}></StyleableButton>
-                <StyleableButton style={styles.challengeButton} title={answers[1]} onPress={() => {
-                    checkAnswer(answers[1]);
-                }}></StyleableButton>
-                <StyleableButton style={styles.challengeButton} title={answers[2]} onPress={() => {
-                    checkAnswer(answers[2]);
-                }}></StyleableButton>
-            </View>
+            { data.length > 0 && (<Challenge navigation={navigation} data={data} />)}
+            { isLoading && (<ActivityIndicator size={60} color="#2196F3" style={styles.container}/>)}
         </View>
     );
 }
